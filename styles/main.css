@@ -1,0 +1,21 @@
+.grid
+{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.grid div
+{
+    border: 1px solid black;
+
+    width: 58px;
+    height: 58px;
+}
+
+.snake
+{
+    background: darkgreen;
+}
