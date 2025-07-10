@@ -1,20 +1,25 @@
 // the init method will be called after the page loads;
 function init()
 {
-    // this section holds the html elements
+    /*------------------------ Cached Element References ------------------------*/
     const gridEl = document.querySelector(".grid");
+    const resetBtnEl = document.querySelector("#reset");
 
+    /*-------------------------------- Constants --------------------------------*/
     // grid data
     const cells = [];
     const gridWidth = 10;
     const numberOfCells = gridWidth * gridWidth;
+
     let gameStart = false;
     let gameEnd = false;
 
+    /*-------------------------------- Constants --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
-    let snakePosition = 25;
+    let snakePosition = 56;
     let snakeLength = 1;
     let snakeDir = 1;
+    let tempPos = snakePosition;
 
     // this method will create a grid to act as the board
     function createGrid()
@@ -37,32 +42,46 @@ function init()
         cells[snakePosition].classList.remove("snake");
     }
 
-    // this method will be called once every frame to force the player to move
+    // this method will be called once every half a second to force the player to move
     function play()
     {
-        
+        gameStart = true;
 
         setInterval(() => 
         {
-            if(gameStart)
+            removeSnake();
+            tempPos += snakeDir;
+            if(tempPos < 0 || tempPos >= numberOfCells)
             {
-                removeSnake();
-                snakePosition += snakeDir;
-                placeSnake();
+                gameEnd = true;
+                gameEnd();
             }
+            else
+            {
+                snakePosition = tempPos;
+            }
+            placeSnake();
 
-        }, 1000);
+        }, 500);
+    }
+
+    function endGame()
+    {
+        tempPos = 44;
+        snakePosition = tempPos;
     }
     
 
     // this section will call all the methods to run the game
     createGrid();
-    play();
     
-    // this section will handle player input
+    // this section will handle player input and set the snakeDir to the corresponding direction
     document.addEventListener('keydown', function(event)
     {
-        gameStart = true;
+        if(gameStart == false)
+        {
+            play();
+        }
         
         if(event.key == "w")
         {
@@ -81,8 +100,11 @@ function init()
             snakeDir = -1;
         }
     });
+    resetBtnEl.addEventListener('click', endGame())
 }
 
 
 
 document.addEventListener('DOMContentLoaded', init);
+
+// playerPos / 10 if divisable then endGame
