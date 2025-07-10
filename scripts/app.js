@@ -16,7 +16,7 @@ function init()
 
     /*-------------------------------- Constants --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
-    let snakePosition = 56;
+    let snakePosition = 44;
     let snakeLength = 1;
     let snakeDir = 1;
     let tempPos = snakePosition;
@@ -49,19 +49,27 @@ function init()
 
         setInterval(() => 
         {
-            if(gameEnd) return;
-
             removeSnake();
             tempPos += snakeDir;
             if(tempPos < 0 || tempPos >= numberOfCells)
             {
                 gameEnd = true;
-                //endGame();
+                //restart();
+                console.log("game end");
             }
-            else if(tempPos % 10 == 0)
+            else if(tempPos % 10 == 0 && snakeDir == 1)
             {
                 gameEnd = true;
-                //endGame();
+                //restart();
+                tempPos = snakePosition;
+                console.log("game end");
+            }
+            else if((tempPos % 10) == 9 && snakeDir == -1)
+            {
+                gameEnd = true;
+                snakeDir = 0;
+                //restart();
+                tempPos = snakePosition;
                 console.log("game end");
             }
             else
@@ -73,49 +81,54 @@ function init()
         }, 500);
     }
 
-    function endGame()
+    function restart()
     {
         removeSnake();
         tempPos = 44;
         snakePosition = tempPos;
         snakeDir = 0;
+        gameEnd = false;
         placeSnake();
     }
     
 
     // this section will call all the methods to run the game
     createGrid();
+    placeSnake();
     
     // this section will handle player input and set the snakeDir to the corresponding direction
     document.addEventListener('keydown', function(event)
     {
-        if(gameStart == false)
+        if(gameEnd == false)
         {
-            play();
-        }
-        
-        if(event.key == "w")
-        {
-            snakeDir = -10;
-        }
-        if(event.key == "s")
-        {
-            snakeDir = 10;
-        }
-        if(event.key == "d")
-        {
-            snakeDir = 1;
-        }
-        if(event.key == "a")
-        {
-            snakeDir = -1;
+            if(gameStart == false)
+            {
+                play();
+            }
+            
+            if(event.key == "w")
+            {
+                snakeDir = -10;
+            }
+            if(event.key == "s")
+            {
+                snakeDir = 10;
+            }
+            if(event.key == "d")
+            {
+                snakeDir = 1;
+            }
+            if(event.key == "a")
+            {
+                snakeDir = -1;
+            }
         }
     });
-    resetBtnEl.addEventListener('click', endGame)
+    resetBtnEl.addEventListener('click', restart)
 }
 
 
 
 document.addEventListener('DOMContentLoaded', init);
 
-// playerPos / 10 if divisable then endGame
+// playerPos / 10 if divisable then restart
