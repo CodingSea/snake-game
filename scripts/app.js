@@ -49,12 +49,20 @@ function init()
 
         setInterval(() => 
         {
+            if(gameEnd) return;
+
             removeSnake();
             tempPos += snakeDir;
             if(tempPos < 0 || tempPos >= numberOfCells)
             {
                 gameEnd = true;
-                gameEnd();
+                //endGame();
+            }
+            else if(tempPos % 10 == 0)
+            {
+                gameEnd = true;
+                //endGame();
+                console.log("game end");
             }
             else
             {
@@ -67,8 +75,11 @@ function init()
 
     function endGame()
     {
+        removeSnake();
         tempPos = 44;
         snakePosition = tempPos;
+        snakeDir = 0;
+        placeSnake();
     }
     
 
@@ -100,7 +111,7 @@ function init()
             snakeDir = -1;
         }
     });
-    resetBtnEl.addEventListener('click', endGame())
+    resetBtnEl.addEventListener('click', endGame)
 }
 
 
