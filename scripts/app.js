@@ -17,8 +17,9 @@ function init()
     /*-------------------------------- Constants --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition = 44;
-    let snakeLength = 1;
-    let snakeDir = 1;
+    let snakeLength = 3;
+    let snakeDir = 0;
+    let snakeHistory = [24, 34, 44];
     let tempPos = snakePosition;
 
     // this method will create a grid to act as the board
@@ -34,11 +35,20 @@ function init()
 
     function placeSnake()
     {
-        cells[snakePosition].classList.add("snake");
+        for(let i = 0; i < snakeLength; i++)
+        {
+            const index = (snakeHistory.length - 1) - i;
+            cells[snakeHistory[index]].classList.add("snake");
+        }
     }
 
     function removeSnake()
     {
+        for(let i = 0; i < numberOfCells; i++)
+        {
+            cells[i].classList.remove("snake");
+        }
+
         cells[snakePosition].classList.remove("snake");
     }
 
@@ -71,7 +81,12 @@ function init()
             }
             else
             {
-                snakePosition = tempPos;
+                if(snakeHistory[snakeHistory.length - 1] != tempPos)
+                {
+                    snakePosition = tempPos;
+                    snakeHistory.push(snakePosition);
+                    //console.log(snakeHistory);
+                }
             }
             placeSnake();
 
@@ -85,9 +100,17 @@ function init()
         snakePosition = tempPos;
         snakeDir = 0;
         gameEnd = false;
+        snakeHistory = [24, 34, 44];
         placeSnake();
     }
     
+    function startPlaying()
+    {
+        if(gameStart == false)
+        {
+            play();
+        }
+    }
 
     // this section will call all the methods to run the game
     createGrid();
@@ -98,26 +121,25 @@ function init()
     {
         if(gameEnd == false)
         {
-            if(gameStart == false)
-            {
-                play();
-            }
-            
             if(event.key == "w")
             {
                 snakeDir = -10;
+                startPlaying();
             }
             if(event.key == "s")
             {
                 snakeDir = 10;
+                startPlaying();
             }
             if(event.key == "d")
             {
                 snakeDir = 1;
+                startPlaying();
             }
             if(event.key == "a")
             {
                 snakeDir = -1;
+                startPlaying();
             }
         }
     });
