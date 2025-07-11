@@ -42,6 +42,11 @@ function init()
         for(let i = 0; i < snakeLength; i++)
         {
             const index = (snakeHistory.length - 1) - i;
+            // this will delete the oldest number in the array if the array has more th
+            if(snakeHistory.length > 100)
+            {
+                snakeHistory.shift();
+            }
             const snakePosIndex = snakeHistory[index];
             cells[snakePosIndex].classList.add("snake");
         }
