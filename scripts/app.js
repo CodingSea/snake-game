@@ -17,9 +17,9 @@ function init()
     /*-------------------------------- Constants --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
-    let snakeLength = 7;
+    let snakeLength = 1;
     let snakeDir = 0;
-    let snakeHistory = [14, 24, 34, 44, 54, 64, 74];
+    let snakeHistory = [44];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
@@ -68,6 +68,7 @@ function init()
         {
             cells[snakePosition].classList.remove("fruit");
             snakeLength++;
+            placeFruit();
         }
     }
 
@@ -132,8 +133,8 @@ function init()
         removeSnake();
         snakeDir = 0;
         gameEnd = false;
-        snakeLength = 7;
-        snakeHistory = [14, 24, 34, 44, 54, 64, 74];
+        snakeLength = 1;
+        snakeHistory = [44];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
         placeSnake();
