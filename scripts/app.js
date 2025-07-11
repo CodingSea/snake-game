@@ -7,6 +7,7 @@ function init()
     const scoreEl = document.querySelector("#score");
     const snakeLengthEl = document.querySelector("#snakeLength");
     const messageEl = document.querySelector("#message");
+    const audioEl = document.querySelector("audio");
 
     /*-------------------------------- Constants --------------------------------*/
     // grid data
@@ -14,10 +15,7 @@ function init()
     const gridWidth = 10;
     const numberOfCells = gridWidth * gridWidth;
 
-    let gameStart = false;
-    let gameEnd = false;
-
-    /*-------------------------------- Constants --------------------------------*/
+    /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
     let snakeLength = 1;
@@ -25,7 +23,9 @@ function init()
     let snakeHistory = [44];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
-
+    
+    let gameStart = false;
+    let gameEnd = false;
     let myTimer;
     let score = 0;
 
@@ -76,6 +76,7 @@ function init()
             snakeLength++;
             score += 100;
             placeFruit();
+            playSound();
         }
     }
 
@@ -207,10 +208,20 @@ function init()
         }
     }
 
+    function playSound()
+    {
+        audioEl.pause();
+        audioEl.currentTime = 0;
+
+        audioEl.play();
+    }
+
     // this section will call all the methods to run the game
     createGrid();
     placeSnake();
     placeFruit();
+    audioEl.load();
+    audioEl.currentTime = 0;
     
     // this section will handle player input and set the snakeDir to the corresponding direction
     document.addEventListener('keydown', function(event)
@@ -245,5 +256,3 @@ function init()
 
 
 document.addEventListener('DOMContentLoaded', init);
-
-// playerPos / 10 if divisable then restart
