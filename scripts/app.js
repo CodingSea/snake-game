@@ -55,14 +55,12 @@ function init()
             {
                 gameEnd = true;
                 //restart();
-                console.log("game end");
             }
             else if(tempPos % 10 == 0 && snakeDir == 1)
             {
                 gameEnd = true;
                 //restart();
                 tempPos = snakePosition;
-                console.log("game end");
             }
             else if((tempPos % 10) == 9 && snakeDir == -1)
             {
@@ -70,7 +68,6 @@ function init()
                 snakeDir = 0;
                 //restart();
                 tempPos = snakePosition;
-                console.log("game end");
             }
             else
             {
