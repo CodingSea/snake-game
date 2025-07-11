@@ -16,10 +16,11 @@ function init()
 
     /*-------------------------------- Constants --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
-    let snakePosition = 44;
-    let snakeLength = 3;
+    let snakePosition;
+    let snakeLength = 7;
     let snakeDir = 0;
-    let snakeHistory = [24, 34, 44];
+    let snakeHistory = [14, 24, 34, 44, 54, 64, 74];
+    snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
     // this method will create a grid to act as the board
@@ -28,6 +29,7 @@ function init()
         for(let i = 0; i < numberOfCells; i++)
         {
             const cell = document.createElement("div");
+            cell.id = i;
             cells.push(cell);
             //cell.textContent = i;
             gridEl.appendChild(cell);
@@ -36,10 +38,12 @@ function init()
 
     function placeSnake()
     {
+        removeSnake();
         for(let i = 0; i < snakeLength; i++)
         {
             const index = (snakeHistory.length - 1) - i;
-            cells[snakeHistory[index]].classList.add("snake");
+            const snakePosIndex = snakeHistory[index];
+            cells[snakePosIndex].classList.add("snake");
         }
 
         eatFruit();
@@ -51,8 +55,6 @@ function init()
         {
             cells[i].classList.remove("snake");
         }
-
-        cells[snakePosition].classList.remove("snake");
     }
 
     function eatFruit()
@@ -71,12 +73,22 @@ function init()
 
         setInterval(() => 
         {
-            removeSnake();
             tempPos += snakeDir;
+            checkSnake();
             checkBoundary();
             placeSnake();
 
         }, 500);
+    }
+
+    function checkSnake()
+    {
+        if(cells[tempPos].classList.contains("snake"))
+        {
+            gameEnd = true;
+            snakeDir = 0;
+            tempPos = snakePosition;
+        }
     }
 
     function checkBoundary()
@@ -113,12 +125,14 @@ function init()
     function restart()
     {
         removeSnake();
-        tempPos = 44;
-        snakePosition = tempPos;
         snakeDir = 0;
         gameEnd = false;
-        snakeHistory = [24, 34, 44];
+        snakeLength = 7;
+        snakeHistory = [14, 24, 34, 44, 54, 64, 74];
+        tempPos = snakeHistory[snakeHistory.length - 1];
+        snakePosition = tempPos;
         placeSnake();
+
     }
     
     function startPlaying()
