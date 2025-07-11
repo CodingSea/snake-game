@@ -4,6 +4,8 @@ function init()
     /*------------------------ Cached Element References ------------------------*/
     const gridEl = document.querySelector(".grid");
     const resetBtnEl = document.querySelector("#reset");
+    const scoreEl = document.querySelector("#score");
+    const snakeLengthEl = document.querySelector("#snakeLength");
 
     /*-------------------------------- Constants --------------------------------*/
     // grid data
@@ -22,6 +24,9 @@ function init()
     let snakeHistory = [44];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
+
+    let myTimer;
+    let score = 0;
 
     // this method will create a grid to act as the board
     function createGrid()
@@ -68,6 +73,7 @@ function init()
         {
             cells[snakePosition].classList.remove("fruit");
             snakeLength++;
+            score += 100;
             placeFruit();
         }
     }
@@ -77,18 +83,27 @@ function init()
     {
         gameStart = true;
 
-        setInterval(() => 
+        myTimer = setInterval(() => 
         {
+            if(gameEnd)
+            {
+                clearInterval(myTimer);
+            }
+
             tempPos += snakeDir;
             checkSnake();
             checkBoundary();
             placeSnake();
-
+            updateInfo();
         }, 500);
+
+        
     }
 
     function checkSnake()
     {
+        if(tempPos < 0 || tempPos >= 100) return;
+        
         if(cells[tempPos].classList.contains("snake"))
         {
             gameEnd = true;
@@ -102,19 +117,16 @@ function init()
         if(tempPos < 0 || tempPos >= numberOfCells)
         {
             gameEnd = true;
-            //restart();
         }
         else if(tempPos % 10 == 0 && snakeDir == 1)
         {
             gameEnd = true;
-            //restart();
             tempPos = snakePosition;
         }
         else if((tempPos % 10) == 9 && snakeDir == -1)
         {
             gameEnd = true;
             snakeDir = 0;
-            //restart();
             tempPos = snakePosition;
         }
         else
@@ -123,7 +135,6 @@ function init()
             {
                 snakePosition = tempPos;
                 snakeHistory.push(snakePosition);
-                //console.log(snakeHistory);
             }
         }
     }
@@ -133,10 +144,12 @@ function init()
         removeSnake();
         snakeDir = 0;
         gameEnd = false;
+        gameStart = false;
         snakeLength = 1;
         snakeHistory = [44];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
+        score = 0;
         placeSnake();
 
         for(let i = 0; i < numberOfCells; i++)
@@ -144,11 +157,12 @@ function init()
             cells[i].classList.remove("fruit");
         }
         placeFruit();
+        updateInfo();
     }
     
     function startPlaying()
     {
-        if(gameStart == false)
+        if(gameStart === false)
         {
             play();
         }
@@ -164,6 +178,12 @@ function init()
         while (cells[indexNum].classList.contains("snake") || cells[indexNum].classList.contains("fruit"));
         
         cells[indexNum].classList.add("fruit");
+    }
+
+    function updateInfo()
+    {
+        scoreEl.textContent = `Score: ${score}`;
+        snakeLengthEl.textContent = `Snake Length: ${snakeLength}`;
     }
 
     // this section will call all the methods to run the game
@@ -196,6 +216,11 @@ function init()
                 snakeDir = -1;
                 startPlaying();
             }
+        }
+
+        if(event.key == 't')
+        {
+            console.log(gameEnd);
         }
     });
     resetBtnEl.addEventListener('click', restart)
