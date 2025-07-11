@@ -133,6 +133,11 @@ function init()
         snakePosition = tempPos;
         placeSnake();
 
+        for(let i = 0; i < numberOfCells; i++)
+        {
+            cells[i].classList.remove("fruit");
+        }
+        placeFruit();
     }
     
     function startPlaying()
