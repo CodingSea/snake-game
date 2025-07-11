@@ -141,7 +141,11 @@ function init()
 
     function restart()
     {
-        removeSnake();
+        if(myTimer !== undefined)
+        {
+            clearInterval(myTimer);
+        }
+
         snakeDir = 0;
         gameEnd = false;
         gameStart = false;
@@ -150,12 +154,11 @@ function init()
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
         score = 0;
-        placeSnake();
-
         for(let i = 0; i < numberOfCells; i++)
         {
             cells[i].classList.remove("fruit");
         }
+        placeSnake();
         placeFruit();
         updateInfo();
     }
@@ -216,11 +219,6 @@ function init()
                 snakeDir = -1;
                 startPlaying();
             }
-        }
-
-        if(event.key == 't')
-        {
-            console.log(gameEnd);
         }
     });
     resetBtnEl.addEventListener('click', restart)
