@@ -2,6 +2,7 @@ body
 {
     margin-left: auto;
     margin-right: auto;
+    background: #f0f0f0;
 }
 
 div
@@ -16,7 +17,7 @@ div
     height: 600px;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .grid div
@@ -39,17 +40,22 @@ div
 
 .playerInfo
 {
-    display: inline-block;
-    width: 100%;
+    display: flex;
+    width: 600px;
     text-align: center;
     margin-top: 1em;
-    margin-bottom: 1em;
+    font-size: 1.3em;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .playerInfo p
 {
-    display: inline;
-    margin-right: 5em;
+    text-align: center;
+}
+
+#message
+{
     text-align: center;
 }
 
@@ -64,4 +70,10 @@ button
     border: 1px solid black;
     padding: 1em;
     font-size: 1.3em;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button:hover
+{
+    background-color: rgba(0, 0, 0, 0.2);
 }

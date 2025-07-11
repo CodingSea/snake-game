@@ -6,6 +6,7 @@ function init()
     const resetBtnEl = document.querySelector("#reset");
     const scoreEl = document.querySelector("#score");
     const snakeLengthEl = document.querySelector("#snakeLength");
+    const messageEl = document.querySelector("#message");
 
     /*-------------------------------- Constants --------------------------------*/
     // grid data
@@ -187,6 +188,23 @@ function init()
     {
         scoreEl.textContent = `Score: ${score}`;
         snakeLengthEl.textContent = `Snake Length: ${snakeLength}`;
+        if(gameEnd)
+        {
+            gameStart = false;
+        }
+
+        if(gameStart)
+        {
+            messageEl.textContent = "Playing...";
+        }
+        else if(gameEnd)
+        {
+            messageEl.textContent = "Game Over!";
+        }
+        else
+        {
+            messageEl.textContent = "Press WASD to Start Playing";
+        }
     }
 
     // this section will call all the methods to run the game
