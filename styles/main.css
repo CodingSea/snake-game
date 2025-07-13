@@ -86,3 +86,8 @@ select
 {
     font-size: 1em;
 }
+
+.snakeHead
+{
+    background: url(../assets/Snake-Head.png);
+}

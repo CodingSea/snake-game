@@ -58,10 +58,19 @@ function init()
                 snakeHistory.shift();
             }
             const snakePosIndex = snakeHistory[index];
-            cells[snakePosIndex].classList.add("snake");
+            
+            if(i === 0)
+            {
+                cells[snakePosIndex].classList.add("snakeHead");
+            }
+            else
+            {
+                cells[snakePosIndex].classList.add("snake");
+            }
         }
 
         eatFruit();
+        rotateSnake();
     }
 
     function removeSnake() 
@@ -69,6 +78,7 @@ function init()
         for (let i = 0; i < numberOfCells; i++) 
         {
             cells[i].classList.remove("snake");
+            cells[i].classList.remove("snakeHead");
         }
     }
 
@@ -269,6 +279,26 @@ function init()
         gameOverSFXEl.play();
     }
 
+    function rotateSnake()
+    {
+        if(snakeDir == -10)
+        {
+            cells[snakePosition].style.transform = "rotate(0deg)";
+        }
+        else if(snakeDir == 10)
+        {
+            cells[snakePosition].style.transform = "rotate(180deg)";
+        }
+        else if(snakeDir == 1)
+        {
+            cells[snakePosition].style.transform = "rotate(90deg)";
+        }
+        else if(snakeDir == -1)
+        {
+            cells[snakePosition].style.transform = "rotate(270deg)";
+        }
+    }
+
     // this section will call all the methods to run the game
     createGrid();
     placeSnake();
@@ -306,6 +336,8 @@ function init()
                 snakeDir = -1;
                 startPlaying();
             }
+
+            rotateSnake();
         }
     });
     resetBtnEl.addEventListener('click', restart)
