@@ -14,8 +14,6 @@ div
 
 .grid
 {
-    width: 1200px;
-    height: 600px;
     display: flex;
     flex-wrap: wrap;
     border: 2px solid black;

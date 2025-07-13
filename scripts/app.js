@@ -3,6 +3,7 @@ function init()
 {
     /*------------------------ Cached Element References ------------------------*/
     const gridEl = document.querySelector(".grid");
+
     const resetBtnEl = document.querySelector("#reset");
     const scoreEl = document.querySelector("#score");
     const highScoreEl = document.querySelector("#highScore");
@@ -17,16 +18,23 @@ function init()
     const cells = [];
     const gridWidth = 20;
     const gridHeight = 10;
+    const cellSize = 60;
     const numberOfCells = gridWidth * gridHeight;
-    let snakeTimer = 1000;
+    let snakeTimer = 800;
+
+    gridEl.style.width = `${gridWidth * cellSize}px`;
+    gridEl.style.height = `${gridHeight * cellSize}px`;
 
     /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
-    let snakeLength = 1;
+    let snakeLength = 4;
     let snakeDir = gridWidth;
-    let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
-    let snakeDirHistory = [10];
+
+    //let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
+    let snakeHistory = [50,70,90,110];
+
+    let snakeDirHistory = [20,20,20,20];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
@@ -43,6 +51,8 @@ function init()
             const cell = document.createElement("div");
             cell.id = i;
             cells.push(cell);
+            cell.style.width = cellSize;
+            cell.style.height = cellSize;
             //cell.textContent = i;
             gridEl.appendChild(cell);
         }
@@ -234,7 +244,7 @@ function init()
         gameStart = false;
         snakeLength = 1;
         snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
-        snakeDirHistory = [10];
+        snakeDirHistory = [gridWidth];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
         score = 0;
