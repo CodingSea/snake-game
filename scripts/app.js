@@ -18,12 +18,13 @@ function init()
     const cells = [];
     const gridWidth = 20;
     const gridHeight = 10;
+    const gridScale = 62;
     const cellSize = 60;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 800;
 
-    gridEl.style.width = `${gridWidth * cellSize}px`;
-    gridEl.style.height = `${gridHeight * cellSize}px`;
+    gridEl.style.width = `${gridWidth * gridScale}px`;
+    gridEl.style.height = `${gridHeight * gridScale}px`;
 
     /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
@@ -54,8 +55,8 @@ function init()
             const cell = document.createElement("div");
             cell.id = i;
             cells.push(cell);
-            cell.style.width = cellSize;
-            cell.style.height = cellSize;
+            cell.style.width = `${cellSize}px`;
+            cell.style.height = `${cellSize}px`;
             //cell.textContent = i;
             gridEl.appendChild(cell);
         }
@@ -76,6 +77,7 @@ function init()
 
             cells[snakePosIndex].classList.add("snake");
             
+            // cell type
             if(i == 0)
             {
                 cells[snakePosIndex].classList.add("snakeHead");
@@ -89,6 +91,7 @@ function init()
                 cells[snakePosIndex].classList.add("snakeBody");
             }
             
+            // cell rotation
             if(snakeDirHistory[index] == (gridWidth * -1))
             {
                 cells[snakePosIndex].style.transform = "rotate(0deg)";
@@ -105,6 +108,28 @@ function init()
             {
                 cells[snakePosIndex].style.transform = "rotate(270deg)";
             }
+
+        }
+
+        // cell turning right
+        if(snakeDirHistory[snakeDirHistory.length - 1] !== snakeDirHistory[snakeDirHistory.length - 2])
+        {
+            if(snakeDir == 1 && snakeDirHistory[snakeDirHistory.length - 2] == (gridWidth * -1))
+            {
+                cells[snakePosition - 1].classList.add("snakeTurnRight");
+            }
+            else if(snakeDir == gridWidth && snakeDirHistory[snakeDirHistory.length - 2] == 1)
+            {
+                cells[snakePosition - gridWidth].classList.add("snakeTurnRight");
+            }
+            else if(snakeDir == -1 && snakeDirHistory[snakeDirHistory.length - 2] == gridWidth)
+            {
+                cells[snakePosition + 1].classList.add("snakeTurnRight");
+            }
+            else if(snakeDir == (gridWidth * -1) && snakeDirHistory[snakeDirHistory.length - 2] == -1)
+            {
+                cells[snakePosition + gridWidth].classList.add("snakeTurnRight");
+            }
         }
 
         eatFruit();
@@ -119,6 +144,8 @@ function init()
             cells[i].classList.remove("snakeHead");
             cells[i].classList.remove("snakeBody");
             cells[i].classList.remove("snakeTail");
+            cells[i].classList.remove("snakeTurnRight");
+            cells[i].classList.remove("snakeTurnLeft");
             cells[i].style.transform = "rotate(0deg)";
         }
     }

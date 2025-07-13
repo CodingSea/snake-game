@@ -22,9 +22,6 @@ div
 .grid div
 {
     border: 1px solid black;
-
-    width: 58px;
-    height: 58px;
 }
 
 .snake
@@ -92,14 +89,15 @@ select
 .snakeHead
 {
     background: url(../assets/Snake-Head.png);
-    background-size: 100%;
+    background-size: 100% 100%;
+    background-position: 50% 100%;
     background-repeat: no-repeat;
 }
 
 .snakeBody
 {
     background: url(../assets/Snake-Body.png);
-    background-size: 80% 100%;
+    background-size: 100% 100%;
     background-position: 50%;
     background-repeat: no-repeat;   
 }
@@ -107,7 +105,23 @@ select
 .snakeTail
 {
     background: url(../assets/Snake-Tail.png);
-    background-size: 80% 100%;
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.snakeTurnRight
+{
+    background: url(../assets/Snake-Turn-Right.png);
+    background-size: 100% 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.snakeTurnLeft
+{
+    background: url(../assets/Snake-Turn-Left.png);
+    background-size: 100% 100%;
     background-position: 50%;
     background-repeat: no-repeat;
 }
