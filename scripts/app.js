@@ -24,7 +24,7 @@ function init()
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
     let snakeLength = 1;
-    let snakeDir = 0;
+    let snakeDir = 1;
     let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
     let snakeDirHistory = [10];
     snakePosition = snakeHistory[snakeHistory.length - 1];
@@ -229,7 +229,7 @@ function init()
             clearInterval(myTimer);
         }
 
-        snakeDir = 0;
+        snakeDir = 1;
         gameEnd = false;
         gameStart = false;
         snakeLength = 1;
@@ -329,6 +329,18 @@ function init()
         }
     }
 
+    function checkSnakeBody(sd)
+    {
+        if(cells[snakePosition + sd].classList.contains("snake"))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     // this section will call all the methods to run the game
     createGrid();
     placeSnake();
@@ -346,22 +358,22 @@ function init()
     {
         if (gameEnd == false)
         {
-            if (event.key == "w") 
+            if (event.key == "w" && checkSnakeBody(gridWidth * -1)) 
             {
                 snakeDir = gridWidth * -1;
                 startPlaying();
             }
-            if (event.key == "s") 
+            if (event.key == "s" && checkSnakeBody(gridWidth)) 
             {
                 snakeDir = gridWidth;
                 startPlaying();
             }
-            if (event.key == "d")
+            if (event.key == "d" && checkSnakeBody(1))
             {
                 snakeDir = 1;
                 startPlaying();
             }
-            if (event.key == "a") 
+            if (event.key == "a" && checkSnakeBody(-1)) 
             {
                 snakeDir = -1;
                 startPlaying();
