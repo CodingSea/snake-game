@@ -24,7 +24,7 @@ function init()
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
     let snakeLength = 1;
-    let snakeDir = 1;
+    let snakeDir = gridWidth;
     let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
     let snakeDirHistory = [10];
     snakePosition = snakeHistory[snakeHistory.length - 1];
@@ -229,7 +229,7 @@ function init()
             clearInterval(myTimer);
         }
 
-        snakeDir = 1;
+        snakeDir = gridWidth;
         gameEnd = false;
         gameStart = false;
         snakeLength = 1;
