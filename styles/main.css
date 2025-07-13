@@ -63,7 +63,7 @@ div
     text-align: center;
 }
 
-button
+#reset
 {
     display: block;
     text-align: center;
@@ -74,6 +74,10 @@ button
     border: 1px solid black;
     padding: 1em;
     font-size: 1.3em;
+}
+
+button
+{
     background-color: rgb(255, 255, 255);
 }
 
@@ -106,6 +110,16 @@ select
     background: url(../assets/Snake-Tail.png);
     background-size: 100%;
     background-repeat: no-repeat;
+}
+
+#mainMenuBtn
+{
+    margin-left: 0.3em;
+    margin-top: 0.3em;
+
+    border: 1px solid black;
+    padding: 1em;
+    font-size: 1em;
 }
 
 

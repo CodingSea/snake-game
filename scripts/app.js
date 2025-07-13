@@ -60,6 +60,8 @@ function init()
                 snakeHistory.shift();
             }
             const snakePosIndex = snakeHistory[index];
+
+            cells[snakePosIndex].classList.add("snake");
             
             if(i == 0)
             {
@@ -90,8 +92,6 @@ function init()
             {
                 cells[snakePosIndex].style.transform = "rotate(270deg)";
             }
-
-            cells[snakePosIndex].classList.add("snake");
         }
 
         eatFruit();
@@ -142,7 +142,7 @@ function init()
 
         if(difficultyEl.value == "Easy")
         {
-            snakeTimer = 1000;
+            snakeTimer = 800;
         }
         else if(difficultyEl.value == "Normal")
         {
@@ -189,7 +189,7 @@ function init()
 
     function checkSnake() 
     {
-        if (tempPos < 0 || tempPos >= 100) return;
+        if (tempPos < 0 || tempPos >= numberOfCells) return;
 
         if (cells[tempPos].classList.contains("snake")) 
         {

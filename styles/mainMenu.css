@@ -1,0 +1,14 @@
+button
+{
+    margin-left: 0.3em;
+    margin-top: 0.3em;
+
+    border: 1px solid black;
+    padding: 1em;
+    font-size: 1em;
+}
+
+button:hover
+{
+    background-color: rgba(0, 0, 0, 0.2);
+}
