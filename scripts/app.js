@@ -15,7 +15,7 @@ function init()
     /*-------------------------------- Constants --------------------------------*/
     // grid data
     const cells = [];
-    const gridWidth = 15;
+    const gridWidth = 20;
     const gridHeight = 10;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 1000;
@@ -43,7 +43,7 @@ function init()
             const cell = document.createElement("div");
             cell.id = i;
             cells.push(cell);
-            cell.textContent = i;
+            //cell.textContent = i;
             gridEl.appendChild(cell);
         }
     }
@@ -207,7 +207,7 @@ function init()
         {
             gameOver();
         }
-        else if ((tempPos % gridWidth) == 14 && snakeDir == -1) 
+        else if ((tempPos % gridWidth) == (gridWidth - 1) && snakeDir == -1) 
         {
             gameOver();
         }
