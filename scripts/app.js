@@ -25,6 +25,7 @@ function init()
     let snakeLength = 1;
     let snakeDir = 0;
     let snakeHistory = [44];
+    let snakeDirHistory = [];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
@@ -59,14 +60,20 @@ function init()
             }
             const snakePosIndex = snakeHistory[index];
             
-            if(i === 0)
+            if(i == 0)
             {
                 cells[snakePosIndex].classList.add("snakeHead");
             }
+            else if(i == snakeLength - 1)
+            {
+                cells[snakePosIndex].classList.add("snakeTail");
+            }
             else
             {
-                cells[snakePosIndex].classList.add("snake");
+                cells[snakePosIndex].classList.add("snakeBody");
             }
+
+            cells[snakePosIndex].classList.add("snake");
         }
 
         eatFruit();
@@ -79,6 +86,9 @@ function init()
         {
             cells[i].classList.remove("snake");
             cells[i].classList.remove("snakeHead");
+            cells[i].classList.remove("snakeBody");
+            cells[i].classList.remove("snakeTail");
+            cells[i].style.transform = "rotate(0deg)";
         }
     }
 
@@ -189,6 +199,8 @@ function init()
             {
                 snakePosition = tempPos;
                 snakeHistory.push(snakePosition);
+                console.log(snakeHistory);
+                console.log(snakeDirHistory);
             }
         }
     }

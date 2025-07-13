@@ -91,3 +91,18 @@ select
 {
     background: url(../assets/Snake-Head.png);
 }
+
+.snakeBody
+{
+    background: url(../assets/Snake-Body.png);
+}
+
+.snakeTail
+{
+    background: url(../assets/Snake-Tail.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+/* snake sprites url: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5 */
