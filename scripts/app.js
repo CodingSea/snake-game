@@ -1,9 +1,11 @@
 // the init method will be called after the page loads;
-function init() {
+function init() 
+{
     /*------------------------ Cached Element References ------------------------*/
     const gridEl = document.querySelector(".grid");
     const resetBtnEl = document.querySelector("#reset");
     const scoreEl = document.querySelector("#score");
+    const highScoreEl = document.querySelector("#highScore");
     const snakeLengthEl = document.querySelector("#snakeLength");
     const messageEl = document.querySelector("#message");
     const fruitSFXEl = document.querySelector("#coinSFX");
@@ -109,6 +111,11 @@ function init() {
         gameStart = false;
         snakeDir = 0;
         tempPos = snakePosition;
+
+        if(score > localStorage.getItem("highScore"))
+        {
+            localStorage.setItem("highScore", score);
+        }
     }
 
     function checkSnake() 
@@ -191,8 +198,8 @@ function init() {
 
     function updateInfo() 
     {
-        scoreEl.textContent = `Score: ${score}`;
-        snakeLengthEl.textContent = `Snake Length: ${snakeLength}`;
+        scoreEl.textContent = `Score: ${ score }`;
+        snakeLengthEl.textContent = `Snake Length: ${ snakeLength }`;
 
         if (gameStart) 
         {
@@ -205,6 +212,15 @@ function init() {
         else 
         {
             messageEl.textContent = "Press WASD to Start Playing";
+        }
+
+        if(localStorage.getItem("highScore") !== null)
+        {
+            highScoreEl.textContent = `High Score: ${localStorage.getItem("highScore")}`;
+        }
+        else
+        {
+            localStorage.setItem("highScore", 0);
         }
     }
 
@@ -225,6 +241,7 @@ function init() {
     createGrid();
     placeSnake();
     placeFruit();
+    updateInfo();
 
     // audios
     fruitSFXEl.load();
@@ -233,9 +250,10 @@ function init() {
     gameOverSFXEl.currentTime = 0;
 
     // this section will handle player input and set the snakeDir to the corresponding direction
-    document.addEventListener('keydown', function (event) 
+    document.addEventListener('keydown', function (event)
     {
-        if (gameEnd == false) {
+        if (gameEnd == false)
+        {
             if (event.key == "w") 
             {
                 snakeDir = -10;
@@ -246,7 +264,7 @@ function init() {
                 snakeDir = 10;
                 startPlaying();
             }
-            if (event.key == "d") 
+            if (event.key == "d")
             {
                 snakeDir = 1;
                 startPlaying();
@@ -260,7 +278,6 @@ function init() {
     });
     resetBtnEl.addEventListener('click', restart)
 }
-
 
 
 document.addEventListener('DOMContentLoaded', init);
