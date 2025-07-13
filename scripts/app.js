@@ -55,7 +55,7 @@ function init()
         {
             const index = (snakeHistory.length - 1) - i;
             // this will delete the oldest number in the array if the array has more th
-            if (snakeHistory.length > 100) 
+            if (snakeHistory.length > numberOfCells) 
             {
                 snakeHistory.shift();
             }
@@ -76,11 +76,11 @@ function init()
                 cells[snakePosIndex].classList.add("snakeBody");
             }
             
-            if(snakeDirHistory[index] == -10)
+            if(snakeDirHistory[index] == (gridWidth * -1))
             {
                 cells[snakePosIndex].style.transform = "rotate(0deg)";
             }
-            else if(snakeDirHistory[index] == 10)   
+            else if(snakeDirHistory[index] == gridWidth)   
             {
                 cells[snakePosIndex].style.transform = "rotate(180deg)";
             }

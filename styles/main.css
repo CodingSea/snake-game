@@ -101,14 +101,16 @@ select
 .snakeBody
 {
     background: url(../assets/Snake-Body.png);
-    background-size: 100%;
+    background-size: 80% 100%;
+    background-position: 50%;
     background-repeat: no-repeat;   
 }
 
 .snakeTail
 {
     background: url(../assets/Snake-Tail.png);
-    background-size: 100%;
+    background-size: 80% 100%;
+    background-position: 50%;
     background-repeat: no-repeat;
 }
 
