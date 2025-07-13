@@ -10,12 +10,14 @@ function init()
     const messageEl = document.querySelector("#message");
     const fruitSFXEl = document.querySelector("#coinSFX");
     const gameOverSFXEl = document.querySelector("#gameOverSFX");
+    const difficultyEl = document.querySelector("#difficulty");
 
     /*-------------------------------- Constants --------------------------------*/
     // grid data
     const cells = [];
     const gridWidth = 10;
     const numberOfCells = gridWidth * gridWidth;
+    let snakeTimer = 1000;
 
     /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
@@ -87,6 +89,19 @@ function init()
     {
         gameStart = true;
 
+        if(difficultyEl.value == "Easy")
+        {
+            snakeTimer = 1000;
+        }
+        else if(difficultyEl.value == "Normal")
+        {
+            snakeTimer = 500;
+        }
+        else if(difficultyEl.value == "Hard")
+        {
+            snakeTimer = 250;
+        }
+
         myTimer = setInterval(() => 
         {
             if (gameEnd) 
@@ -99,7 +114,7 @@ function init()
             checkBoundary();
             placeSnake();
             updateInfo();
-        }, 500);
+        }, snakeTimer);
 
 
     }
