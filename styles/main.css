@@ -90,11 +90,15 @@ select
 .snakeHead
 {
     background: url(../assets/Snake-Head.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .snakeBody
 {
     background: url(../assets/Snake-Body.png);
+    background-size: 100%;
+    background-repeat: no-repeat;   
 }
 
 .snakeTail

@@ -25,7 +25,7 @@ function init()
     let snakeLength = 1;
     let snakeDir = 0;
     let snakeHistory = [44];
-    let snakeDirHistory = [];
+    let snakeDirHistory = [10];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
@@ -216,10 +216,6 @@ function init()
             {
                 snakePosition = tempPos;
                 snakeHistory.push(snakePosition);
-                if(snakeDirHistory[0] == null)
-                {
-                    snakeDirHistory.push(snakeDir);
-                }
                 snakeDirHistory.push(snakeDir);
             }
         }
