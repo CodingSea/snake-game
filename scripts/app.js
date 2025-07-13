@@ -78,7 +78,20 @@ function init()
         {
             cells[snakePosition].classList.remove("fruit");
             snakeLength++;
-            score += 100;
+
+            if(difficultyEl.value == "Easy")
+            {
+                score += 50;
+            }
+            else if(difficultyEl.value == "Normal")
+            {
+                score += 100;
+            }
+            else if(difficultyEl.value == "Hard")
+            {
+                score += 200;
+            }
+
             placeFruit();
             playCoinSound();
         }

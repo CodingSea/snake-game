@@ -74,7 +74,7 @@ button
     border: 1px solid black;
     padding: 1em;
     font-size: 1.3em;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgb(255, 255, 255);
 }
 
 button:hover
@@ -84,6 +84,5 @@ button:hover
 
 select
 {
-    
     font-size: 1em;
 }
