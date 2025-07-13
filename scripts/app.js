@@ -72,6 +72,23 @@ function init()
             {
                 cells[snakePosIndex].classList.add("snakeBody");
             }
+            
+            if(snakeDirHistory[index] == -10)
+            {
+                cells[snakePosIndex].style.transform = "rotate(0deg)";
+            }
+            else if(snakeDirHistory[index] == 10)
+            {
+                cells[snakePosIndex].style.transform = "rotate(180deg)";
+            }
+            else if(snakeDirHistory[index] == 1)
+            {
+                cells[snakePosIndex].style.transform = "rotate(90deg)";
+            }
+            else if(snakeDirHistory[index] == -1)
+            {
+                cells[snakePosIndex].style.transform = "rotate(270deg)";
+            }
 
             cells[snakePosIndex].classList.add("snake");
         }
@@ -199,8 +216,11 @@ function init()
             {
                 snakePosition = tempPos;
                 snakeHistory.push(snakePosition);
-                console.log(snakeHistory);
-                console.log(snakeDirHistory);
+                if(snakeDirHistory[0] == null)
+                {
+                    snakeDirHistory.push(snakeDir);
+                }
+                snakeDirHistory.push(snakeDir);
             }
         }
     }
