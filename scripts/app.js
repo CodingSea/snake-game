@@ -25,7 +25,7 @@ function init()
     let snakePosition;
     let snakeLength = 1;
     let snakeDir = 0;
-    let snakeHistory = [44];
+    let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
     let snakeDirHistory = [10];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
@@ -43,7 +43,7 @@ function init()
             const cell = document.createElement("div");
             cell.id = i;
             cells.push(cell);
-            //cell.textContent = i;
+            cell.textContent = i;
             gridEl.appendChild(cell);
         }
     }
@@ -233,7 +233,7 @@ function init()
         gameEnd = false;
         gameStart = false;
         snakeLength = 1;
-        snakeHistory = [44];
+        snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
         snakeDirHistory = [10];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
