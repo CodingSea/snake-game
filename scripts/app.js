@@ -29,14 +29,17 @@ function init()
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
     let snakeLength = 4;
-    let snakeDir = gridWidth;
+    let snakeDir = -20;
 
     //let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
-    let snakeHistory = [50,70,90,110];
+    let snakeHistory = [110,90,70,50];
 
-    let snakeDirHistory = [20,20,20,20];
+    let snakeDirHistory = [-20,-20,-20,-20];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
+
+    let snakeTurnedRight = false;
+    let snakeTurnedLeft = false;
 
     let gameStart = false;
     let gameEnd = false;
