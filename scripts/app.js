@@ -15,8 +15,9 @@ function init()
     /*-------------------------------- Constants --------------------------------*/
     // grid data
     const cells = [];
-    const gridWidth = 10;
-    const numberOfCells = gridWidth * gridWidth;
+    const gridWidth = 15;
+    const gridHeight = 10;
+    const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 1000;
 
     /*-------------------------------- Variables --------------------------------*/
@@ -77,7 +78,7 @@ function init()
             {
                 cells[snakePosIndex].style.transform = "rotate(0deg)";
             }
-            else if(snakeDirHistory[index] == 10)
+            else if(snakeDirHistory[index] == 10)   
             {
                 cells[snakePosIndex].style.transform = "rotate(180deg)";
             }
@@ -202,11 +203,11 @@ function init()
         {
             gameOver();
         }
-        else if (tempPos % 10 == 0 && snakeDir == 1) 
+        else if (tempPos % gridWidth == 0 && snakeDir == 1) 
         {
             gameOver();
         }
-        else if ((tempPos % 10) == 9 && snakeDir == -1) 
+        else if ((tempPos % gridWidth) == 14 && snakeDir == -1) 
         {
             gameOver();
         }
@@ -214,9 +215,9 @@ function init()
         {
             if (snakeHistory[snakeHistory.length - 1] != tempPos) 
             {
+                snakeDirHistory.push(tempPos - snakePosition);
                 snakePosition = tempPos;
                 snakeHistory.push(snakePosition);
-                snakeDirHistory.push(snakeDir);
             }
         }
     }
@@ -233,6 +234,7 @@ function init()
         gameStart = false;
         snakeLength = 1;
         snakeHistory = [44];
+        snakeDirHistory = [10];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
         score = 0;
@@ -309,11 +311,11 @@ function init()
 
     function rotateSnake()
     {
-        if(snakeDir == -10)
+        if(snakeDir == (gridWidth * -1))
         {
             cells[snakePosition].style.transform = "rotate(0deg)";
         }
-        else if(snakeDir == 10)
+        else if(snakeDir == gridWidth)
         {
             cells[snakePosition].style.transform = "rotate(180deg)";
         }
@@ -346,12 +348,12 @@ function init()
         {
             if (event.key == "w") 
             {
-                snakeDir = -10;
+                snakeDir = gridWidth * -1;
                 startPlaying();
             }
             if (event.key == "s") 
             {
-                snakeDir = 10;
+                snakeDir = gridWidth;
                 startPlaying();
             }
             if (event.key == "d")
