@@ -102,6 +102,8 @@ function init()
             snakeTimer = 250;
         }
 
+        difficultyEl.disabled = true;
+
         myTimer = setInterval(() => 
         {
             if (gameEnd) 
@@ -126,6 +128,7 @@ function init()
         gameStart = false;
         snakeDir = 0;
         tempPos = snakePosition;
+        difficultyEl.disabled = false;
 
         if(score > localStorage.getItem("highScore"))
         {
@@ -186,6 +189,7 @@ function init()
         {
             cells[i].classList.remove("fruit");
         }
+        difficultyEl.disabled = false;
         placeSnake();
         placeFruit();
         updateInfo();
