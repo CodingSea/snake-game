@@ -18,24 +18,23 @@ function init()
     const cells = [];
     const gridWidth = 20;
     const gridHeight = 10;
-    const gridScale = 62;
-    const cellSize = 60;
+    //const gridScale = 62;
+    const cellSize = 50;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 800;
 
-    gridEl.style.width = `${gridWidth * gridScale}px`;
-    gridEl.style.height = `${gridHeight * gridScale}px`;
+    gridEl.style.width = `${gridWidth * (cellSize + 2)}px`;
+    gridEl.style.height = `${gridHeight * (cellSize + 2)}px`;
 
     /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
-    let snakeLength = 3;
-    let snakeDir = -20;
+    let snakeLength = 1;
+    let snakeDir = gridWidth;
 
-    //let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
-    let snakeHistory = [110,90,70,50];
+    let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
 
-    let snakeDirHistory = [-20,-20,-20,-20];
+    let snakeDirHistory = [snakeDir];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
@@ -226,7 +225,7 @@ function init()
         }
         else if(difficultyEl.value == "Normal")
         {
-            snakeTimer = 1000;
+            snakeTimer = 500;
         }
         else if(difficultyEl.value == "Hard")
         {
