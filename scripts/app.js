@@ -29,7 +29,7 @@ function init()
     /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
-    let snakeLength = 4;
+    let snakeLength = 3;
     let snakeDir = -20;
 
     //let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
@@ -38,9 +38,6 @@ function init()
     let snakeDirHistory = [-20,-20,-20,-20];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
-
-    let snakeTurnedRight = false;
-    let snakeTurnedLeft = false;
 
     let gameStart = false;
     let gameEnd = false;
@@ -111,11 +108,12 @@ function init()
                 cells[snakePosIndex].style.transform = "rotate(270deg)";
             }
 
-            // cell turning right 02 ---- not working
+            // cell turning right
             if(snakeDirHistory[snakeDirHistory.length - i] !== snakeDirHistory[snakeDirHistory.length - i - 1])
             {
                 if(i !== snakeLength - 1)
                 {
+                    // right turn
                     if(snakeDirHistory[snakeDirHistory.length - i] == 1 && snakeDirHistory[snakeDirHistory.length - i - 1] == (gridWidth * -1))
                     {
                         cells[snakePosIndex].classList.add("snakeTurnRight");
@@ -131,6 +129,25 @@ function init()
                     else if(snakeDirHistory[snakeDirHistory.length - i] == (gridWidth * -1) && snakeDirHistory[snakeDirHistory.length - i - 1] == -1)
                     {
                         cells[snakePosIndex].classList.add("snakeTurnRight");
+                    }
+
+
+                    // left turn
+                    if(snakeDirHistory[snakeDirHistory.length - i] == -1 && snakeDirHistory[snakeDirHistory.length - i - 1] == (gridWidth * -1))
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnLeft");
+                    }
+                    else if(snakeDirHistory[snakeDirHistory.length - i] == gridWidth && snakeDirHistory[snakeDirHistory.length - i - 1] == -1)
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnLeft");
+                    }
+                    else if(snakeDirHistory[snakeDirHistory.length - i] == 1 && snakeDirHistory[snakeDirHistory.length - i - 1] == gridWidth)
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnLeft");
+                    }
+                    else if(snakeDirHistory[snakeDirHistory.length - i] == (gridWidth * -1) && snakeDirHistory[snakeDirHistory.length - i - 1] == 1)
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnLeft");
                     }
                 }
                 else
@@ -154,28 +171,6 @@ function init()
                 }
             }
         }
-
-        // cell turning right
-        /*
-        if(snakeDirHistory[snakeDirHistory.length - 1] !== snakeDirHistory[snakeDirHistory.length - 2])
-        {
-            if(snakeDir == 1 && snakeDirHistory[snakeDirHistory.length - 2] == (gridWidth * -1))
-            {
-                cells[snakePosition - 1].classList.add("snakeTurnRight");
-            }
-            else if(snakeDir == gridWidth && snakeDirHistory[snakeDirHistory.length - 2] == 1)
-            {
-                cells[snakePosition - gridWidth].classList.add("snakeTurnRight");
-            }
-            else if(snakeDir == -1 && snakeDirHistory[snakeDirHistory.length - 2] == gridWidth)
-            {
-                cells[snakePosition + 1].classList.add("snakeTurnRight");
-            }
-            else if(snakeDir == (gridWidth * -1) && snakeDirHistory[snakeDirHistory.length - 2] == -1)
-            {
-                cells[snakePosition + gridWidth].classList.add("snakeTurnRight");
-            }
-        }*/
 
         eatFruit();
         rotateSnake();
