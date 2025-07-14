@@ -78,9 +78,6 @@ function init()
             const snakePosIndex = snakeHistory[index];
 
             cells[snakePosIndex].classList.add("snake");
-
-            console.log("index: " + index);
-            console.log("snakePosIndex: " + snakeHistory.length - 1);
             
             // cell type
             if(i == 0)
@@ -138,7 +135,22 @@ function init()
                 }
                 else
                 {
-                    
+                    if(snakeDirHistory[index + 1] == (gridWidth * -1))
+                    {
+                        cells[snakePosIndex].style.transform = "rotate(0deg)";
+                    }
+                    else if(snakeDirHistory[index + 1] == gridWidth)   
+                    {
+                        cells[snakePosIndex].style.transform = "rotate(180deg)";
+                    }
+                    else if(snakeDirHistory[index + 1] == 1)
+                    {
+                        cells[snakePosIndex].style.transform = "rotate(90deg)";
+                    }
+                    else if(snakeDirHistory[index + 1] == -1)
+                    {
+                        cells[snakePosIndex].style.transform = "rotate(270deg)";
+                    }
                 }
             }
         }
