@@ -79,11 +79,13 @@ button
 {
     background-color: rgb(255, 255, 255);
     border-radius: 1em;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover
 {
-    background-color: rgba(100, 100, 100, 1);
+    background-color: rgba(150, 150, 150, 1);
+    transform: scale(1.1);
 }
 
 select
