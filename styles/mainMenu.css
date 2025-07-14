@@ -25,6 +25,7 @@ button
     padding: 0.5em;
     width: 400px;
     font-size: 2em;
+    border-radius: 1em;
 }
 
 a

@@ -181,6 +181,12 @@ select
     font-size: 2em;
 }
 
+.popup h1
+{
+    text-align: center;
+    color: white;
+}
+
 .popup a
 {
     text-decoration: none;
