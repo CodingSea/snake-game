@@ -4,6 +4,9 @@ body
     margin-right: auto;
     background: #f0f0f0;
     font-family: Arial, Helvetica, sans-serif;
+    background: url("../assets/bg01.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 div
@@ -22,6 +25,7 @@ div
 .grid div
 {
     border: 1px solid black;
+    background-color: lightgreen;
 }
 
 .snake
@@ -74,16 +78,18 @@ div
 button
 {
     background-color: rgb(255, 255, 255);
+    border-radius: 1em;
 }
 
 button:hover
 {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(100, 100, 100, 1);
 }
 
 select
 {
     font-size: 1em;
+    border-radius: 1em;
 }
 
 .snakeHead
@@ -136,10 +142,53 @@ select
 
 .rock
 {
-     background: url(../assets/Sprites/Stones\ -\ Copy.png);
+     background: url(../assets/Sprites/rock.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
+.crown
+{
+    background: url(../assets/crown.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.popup
+{
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-inline: auto; 
+    width: fit-content;
+    top: 250px;
+
+    background: rgba(0, 0, 180, 0.8);
+    padding: 1em 4em;
+    align-items: center;
+    border-radius: 2em;
+    z-index: 10;
+}
+
+.popup button
+{
+    display: block;
+    margin: 1em auto;
+
+    border: 5px solid black;
+    padding: 0.5em;
+    width: 400px;
+    font-size: 2em;
+}
+
+.popup a
+{
+    text-decoration: none;
+}
+
+.hidden
+{
+    opacity: 0;
+}
 
 /* snake sprites url: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5 */

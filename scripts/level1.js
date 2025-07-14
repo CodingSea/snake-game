@@ -10,6 +10,7 @@ function init()
     const fruitSFXEl = document.querySelector("#coinSFX");
     const gameOverSFXEl = document.querySelector("#gameOverSFX");
     const difficultyEl = document.querySelector("#difficulty");
+    const popupEl = document.querySelector(".popup");
 
     /*-------------------------------- Constants --------------------------------*/
     // grid data
@@ -25,13 +26,13 @@ function init()
     [
         "","","","","","","","","","",
         "","","","","","","","","","",
-        "","","","","","","","","0","",
-        "","","0","","","","","","","",
+        "","0","","","","","","","0","",
         "","","","","","","","","","",
         "","","","","","","","","","",
         "","","","","","","","","","",
-        "","","","","","","","","0","",
-        "","","","0","","","","","","",
+        "","","","","","","","","","",
+        "","0","","","","","","","0","",
+        "","","","","","","","","","",
         "","","","","","","","","","",
     ]
 
@@ -53,6 +54,8 @@ function init()
     let gameStart = false;
     let gameEnd = false;
     let myTimer;
+    const targetLength = 10;
+    let win = false;
 
     // this method will create a grid to act as the board
     function createGrid() 
@@ -187,6 +190,7 @@ function init()
         }
 
         eatFruit();
+        takeCrown();
         rotateSnake();
     }
 
@@ -212,6 +216,17 @@ function init()
             snakeLength++;
 
             placeFruit();
+            playCoinSound();
+        }
+    }
+
+    function takeCrown()
+    {
+        if (cells[snakePosition].classList.contains("crown")) 
+        {
+            cells[snakePosition].classList.remove("crown");
+
+            gameWin();
             playCoinSound();
         }
     }
@@ -316,6 +331,7 @@ function init()
         for (let i = 0; i < numberOfCells; i++) 
         {
             cells[i].classList.remove("fruit");
+            cells[i].classList.remove("crown");
         }
         difficultyEl.disabled = false;
         placeSnake();
@@ -333,14 +349,28 @@ function init()
 
     function placeFruit() 
     {
-        let indexNum;
-        do 
+        if(snakeLength <= targetLength)
         {
-            indexNum = Math.floor(Math.random() * numberOfCells);
-        }
-        while (cells[indexNum].classList.contains("snake") || cells[indexNum].classList.contains("fruit"));
+            let indexNum;
+            do 
+            {
+                indexNum = Math.floor(Math.random() * numberOfCells);
+            }
+            while (cells[indexNum].classList.contains("snake") || cells[indexNum].classList.contains("fruit") || cells[indexNum].classList.contains("rock"));
 
-        cells[indexNum].classList.add("fruit");
+            cells[indexNum].classList.add("fruit");
+        }
+        else
+        {
+            let indexNum;
+            do 
+            {
+                indexNum = Math.floor(Math.random() * numberOfCells);
+            }
+            while (cells[indexNum].classList.contains("snake") || cells[indexNum].classList.contains("fruit") || cells[indexNum].classList.contains("rock"));
+
+            cells[indexNum].classList.add("crown");
+        }
     }
 
     function updateInfo() 
@@ -404,6 +434,13 @@ function init()
         {
             return true;
         }
+    }
+
+    function gameWin()
+    {
+        win = true;
+        popupEl.classList.remove("hidden");
+        clearInterval(myTimer);
     }
 
     // this section will call all the methods to run the game
