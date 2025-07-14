@@ -1,11 +1,35 @@
+body
+{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainMenu
+{
+    width: 600px;
+    margin: 5em auto;
+    
+}
+
+h1
+{
+    font-size: 3.5em;
+}
+
 button
 {
-    margin-left: 0.3em;
-    margin-top: 0.3em;
+    display: block;
+    margin: 1em auto;
 
     border: 1px solid black;
-    padding: 1em;
-    font-size: 1em;
+    padding: 0.5em;
+    width: 400px;
+    font-size: 2em;
+}
+
+a
+{
+    text-decoration: none;
 }
 
 button:hover
