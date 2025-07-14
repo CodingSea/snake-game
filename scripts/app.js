@@ -67,15 +67,20 @@ function init()
         removeSnake();
         for (let i = 0; i < snakeLength; i++) 
         {
+            // last to first index
             const index = (snakeHistory.length - 1) - i;
             // this will delete the oldest number in the array if the array has more th
             if (snakeHistory.length > numberOfCells) 
             {
                 snakeHistory.shift();
             }
+            // index to cell position
             const snakePosIndex = snakeHistory[index];
 
             cells[snakePosIndex].classList.add("snake");
+
+            console.log("index: " + index);
+            console.log("snakePosIndex: " + snakeHistory.length - 1);
             
             // cell type
             if(i == 0)
@@ -109,9 +114,37 @@ function init()
                 cells[snakePosIndex].style.transform = "rotate(270deg)";
             }
 
+            // cell turning right 02 ---- not working
+            if(snakeDirHistory[snakeDirHistory.length - i] !== snakeDirHistory[snakeDirHistory.length - i - 1])
+            {
+                if(i !== snakeLength - 1)
+                {
+                    if(snakeDirHistory[snakeDirHistory.length - i] == 1 && snakeDirHistory[snakeDirHistory.length - i - 1] == (gridWidth * -1))
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnRight");
+                    }
+                    else if(snakeDirHistory[snakeDirHistory.length - i] == gridWidth && snakeDirHistory[snakeDirHistory.length - i - 1] == 1)
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnRight");
+                    }
+                    else if(snakeDirHistory[snakeDirHistory.length - i] == -1 && snakeDirHistory[snakeDirHistory.length - i - 1] == gridWidth)
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnRight");
+                    }
+                    else if(snakeDirHistory[snakeDirHistory.length - i] == (gridWidth * -1) && snakeDirHistory[snakeDirHistory.length - i - 1] == -1)
+                    {
+                        cells[snakePosIndex].classList.add("snakeTurnRight");
+                    }
+                }
+                else
+                {
+                    
+                }
+            }
         }
 
         // cell turning right
+        /*
         if(snakeDirHistory[snakeDirHistory.length - 1] !== snakeDirHistory[snakeDirHistory.length - 2])
         {
             if(snakeDir == 1 && snakeDirHistory[snakeDirHistory.length - 2] == (gridWidth * -1))
@@ -130,7 +163,7 @@ function init()
             {
                 cells[snakePosition + gridWidth].classList.add("snakeTurnRight");
             }
-        }
+        }*/
 
         eatFruit();
         rotateSnake();
@@ -186,7 +219,7 @@ function init()
         }
         else if(difficultyEl.value == "Normal")
         {
-            snakeTimer = 500;
+            snakeTimer = 1000;
         }
         else if(difficultyEl.value == "Hard")
         {
