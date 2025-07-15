@@ -199,4 +199,11 @@ select
     opacity: 0;
 }
 
+.key
+{
+    background: url(../assets/blue-key.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 /* snake sprites url: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5 */
