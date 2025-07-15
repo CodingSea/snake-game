@@ -77,14 +77,14 @@ div
 
 button
 {
-    background-color: rgb(255, 255, 255);
+    background-color: #A5D6A7;
     border-radius: 1em;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover
 {
-    background-color: rgba(150, 150, 150, 1);
+    background-color: #388E3C;
     transform: scale(1.1);
 }
 
@@ -92,6 +92,7 @@ select
 {
     font-size: 1em;
     border-radius: 1em;
+    background: #A5D6A7;
 }
 
 .snakeHead
@@ -165,7 +166,7 @@ select
     width: fit-content;
     top: 250px;
 
-    background: rgba(0, 0, 180, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     padding: 1em 4em;
     align-items: center;
     border-radius: 2em;
@@ -186,7 +187,6 @@ select
 .popup h1
 {
     text-align: center;
-    color: white;
 }
 
 .popup a

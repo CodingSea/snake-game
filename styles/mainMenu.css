@@ -17,6 +17,11 @@ body
     padding: 1em;
 }
 
+.mainMenu::backdrop
+{
+    filter: blur(40px);
+}
+
 h1
 {
     font-size: 3.5em;
