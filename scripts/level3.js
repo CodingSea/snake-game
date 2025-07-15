@@ -332,7 +332,7 @@ function init()
     {
         if (tempPos < 0 || tempPos >= numberOfCells) return;
 
-        if (cells[tempPos].classList.contains("snake") || cells[tempPos].classList.contains("rock")) 
+        if (cells[tempPos].classList.contains("snake") || cells[tempPos].classList.contains("rock") || cells[tempPos].classList.contains("door")) 
         {
             gameOver();
         }
@@ -523,6 +523,9 @@ function init()
             rotateSnake();
         }
     });
+
+    
+
     resetBtnEl.addEventListener('click', restart)
 }
 
