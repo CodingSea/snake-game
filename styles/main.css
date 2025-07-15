@@ -206,4 +206,14 @@ select
     background-repeat: no-repeat;
 }
 
-/* snake sprites url: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5 */
+.door
+{
+    background: url(../assets/Door.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/* 
+    snake sprites url: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5
+    door sprite url: https://www.pngkey.com/detail/u2q8y3a9e6r5i1t4_lpc-doors-animated-1-2d-door-sprite/
+*/
