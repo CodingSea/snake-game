@@ -3,35 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 3</title>
+    <title>Level 4</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="icon" type="image/x-icon" href="../assets/game logo.png">
-    <script src="../scripts/level3.js"></script>
+    <script src="../scripts/level4.js"></script>
 </head>
 <body>
     <header>
         <a href="../index.html"><button id="mainMenuBtn">Main Menu</button></a>
     </header>
     <div class="playerInfo">
+        <p id="score">Score: 0</p>
         <p id="snakeLength">Snake Length: 1</p>
         <select id="difficulty">
             <option value="Easy">Easy</option>
             <option value="Normal" selected>Normal</option>
             <option value="Hard">Hard</option>
         </select>
+        <p id="highScore">High Score: 0</p>
     </div>
     <h2 id="message">Press WASD to Start Playing</h2>
     <div class="grid"></div>
     <button id="reset">Reset</button>
     <audio id="coinSFX" src="assets/coin-257878.mp3"></audio>
     <audio id="gameOverSFX" src="assets/falled-sound-effect-278635.mp3"></audio>
-
-    <div class="popup hidden">
-        <h1>YOU WON!</h1>
-        <a href="level4.html"><button>Next Level</button></a>
-        <a href="../index.html"><button>Main Menu</button></a>
-    </div>
-
-
 </body>
 </html>
