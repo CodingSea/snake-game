@@ -37,6 +37,12 @@ the idea of the snake game is to eat fruits and grow longer till the player reac
 * More Enemies
 * World-Wide Highscore
 
+
+## Attributions
+* snake sprites url: [snake](https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5)
+* door sprite url: [door](https://www.pngkey.com/detail/u2q8y3a9e6r5i1t4_lpc-doors-animated-1-2d-door-sprite/)
+* Sound Effect by [Pixabay](https://pixabay.com/users/driken5482-45721595/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=236677)
+
 ## In Conclusion
 
 All in all, this was a fun project with plenty of creative scope, I'm pleased with the styling and think that I have the basis of a fun and playable game.
