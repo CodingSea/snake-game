@@ -165,6 +165,16 @@ This is achieved by making each picture of the snake divided into a state(Head,B
 This is a fairly simple process of checking whether the snake's next step has a class with the names of rock, hawk or door, this includes a boundary system that calculates the next step of the snake and checks if he is going outside the grid or if the snake is changing rows.
 
 ```js
+    function checkSnake() 
+    {
+        if (tempPos < 0 || tempPos >= numberOfCells) return;
+
+        if (cells[tempPos].classList.contains("snake") || cells[tempPos].classList.contains("rock")) 
+        {
+            gameOver();
+        }
+    }
+
     function checkBoundary() 
     {
         if (tempPos < 0 || tempPos >= numberOfCells) 
@@ -190,6 +200,14 @@ This is a fairly simple process of checking whether the snake's next step has a 
         }
     }
 
+```
+Hawk detection code:
+```js
+if(this.cells[this.hawkPosition].classList.contains("snake") || this.cells[this.hawkPosition].classList.contains("snakeHead") ||this.cells[this.hawkPosition].classList.contains("snakeBody") ||
+this.cells[this.hawkPosition].classList.contains("snakeTail") || this.cells[this.hawkPosition].classList.contains("snakeTurnRight")  || this.cells[this.hawkPosition].classList.contains("snakeTurnLeft"))
+{
+    this.hitSnake = true;
+}
 ```
 
 ## Getting Started
