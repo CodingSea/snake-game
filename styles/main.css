@@ -197,7 +197,7 @@ select
 
 .hidden
 {
-    opacity: 0;
+    display: none;
 }
 
 .key
