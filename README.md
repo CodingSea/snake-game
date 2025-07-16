@@ -28,19 +28,19 @@ I started with a grid of divs as this would allow me to accurately place the spr
 
 I made a grid spawner that will spawn the cells of the grid based on the width an height variables, and in some scripts there is an array that allows me to visualize and spawn some objects like rocks, keys, doors, and the player.
 
-![grid image](assets/grid.png)
+![grid image](assets/readme/grid.png)
 
 ## Game Mechanics
 
 ### Snake Movement
 The snake moves based on the numbers on the grid, it will start by removing all the snake classes in the grid cells and then will place them in thier new position based on the snake movement history and length.
 
-![snake movement](assets/snakeMovement.png)
+![snake movement](assets/readme/snakeMovement.png)
 
 ### Snake Sprite
 This is achieved by making each picture of the snake divided into a state(Head,Body,Tail, etc...), and by making the pictures into backgrounds of classes, the grid will remove all the snake classes and then will place them in thier new position based on the snake movement and direction history these variables allowed me to rotate all the snake cells towards a direction that makes them look better visually. The rest of the snake follows and rotates the snake head based on the direction history except for the last snake cell, the last cell rotates towards the snake cell before it, this makes the snake tail look connected to the rest of the body at all times.
 
-![snake movement](assets/snakeSprite.png)
+![snake movement](assets/readme/snakeSprite.png)
 
 ```js
     function placeSnake() 
