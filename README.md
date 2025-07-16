@@ -8,7 +8,7 @@ This is a web-based implementation of the Snake game. Developed using HTML for s
 
 the idea of the snake game is to eat fruits and grow longer till the player reaches a highscore or take the crown in order to go to the next level.
 * Create a grid-based game suitable for desktop browsers.
-* Design a way for players to win or lose the game and feed this back.
+* Design a way for players to win or lose the game and receive feedback.
 * Use HTML, CSS, and Vanilla JavaScript.
 * The game should be playable for one player.
 * the game should have enemies.
