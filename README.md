@@ -38,7 +38,7 @@ The snake moves based on the numbers on the grid, it will start by removing all 
 ![snake movement](assets/readme/snakeMovement.png)
 
 ### Snake Sprite
-This is achieved by making each picture of the snake divided into a state(Head,Body,Tail, etc...), and by making the pictures into backgrounds of classes, the grid will remove all the snake classes and then will place them in thier new position based on the snake movement and direction history these variables allowed me to rotate all the snake cells towards a direction that makes them look better visually. The rest of the snake follows and rotates the snake head based on the direction history except for the last snake cell, the last cell rotates towards the snake cell before it, this makes the snake tail look connected to the rest of the body at all times.
+This is achieved by making each picture of the snake divided into a state(Head,Body,Tail, etc...), and by making the pictures into backgrounds of classes, the grid will remove all the snake classes and then will place them in thier new position based on the snake movement and direction history, these variables allowed me to rotate all the snake cells towards a direction that makes them look better visually. The rest of the snake follows and rotates the snake head based on the direction history except for the last snake cell, the last cell rotates towards the snake cell before it, this makes the snake tail look connected to the rest of the body at all times.
 
 ![snake movement](assets/readme/snakeSprite.png)
 
