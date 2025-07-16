@@ -8,7 +8,7 @@ function init()
     {
         hawkPosition;
         hawkDir;
-        tempPos;
+        hTempPos;
 
         constructor(hawkPosition, hawkDir, gridWidth, gridHeight, cells)
         {
@@ -45,33 +45,35 @@ function init()
         Move()
         {
             if(this.hitSnake) return;
-            this.tempPos = this.hawkPosition + this.hawkDir;
-            if (tempPos % gridWidth == 0 && snakeDir == 1) 
+
+            this.hTempPos = this.hawkPosition + this.hawkDir;
+            if ((this.hTempPos % gridWidth) == 0 && this.hawkDir === 1) 
             {
-                this.tempPos += this.gridWidth;
+                this.hTempPos -= this.gridWidth;
             }
-            else if ((tempPos % gridWidth) == (gridWidth - 1) && snakeDir == -1) 
+            else if ((this.hTempPos % gridWidth) == (gridWidth - 1) && this.hawkDir === -1) 
             {
-                this.tempPos -= this.gridWidth;
+                this.hTempPos += this.gridWidth;
             }
-            else if(this.tempPos < 0)
+            else if(this.hTempPos < 0)
             {
-                this.tempPos += (this.gridWidth * this.gridHeight);
+                this.hTempPos += (this.gridWidth * this.gridHeight);
             }
-            else if(this.tempPos > (this.gridWidth * this.gridHeight))
+            else if(this.hTempPos > (this.gridWidth * this.gridHeight))
             {
-                this.tempPos -= (this.gridWidth * this.gridHeight);
+                this.hTempPos -= (this.gridWidth * this.gridHeight);
             }
 
             this.cells[this.hawkPosition].classList.remove("hawk");
             this.cells[this.hawkPosition].style.transform = "rotate(0deg)";
-            this.hawkPosition = this.tempPos;
-            //console.log(this.hawkPosition);
+
+            this.hawkPosition = this.hTempPos;
 
             if(this.cells[this.hawkPosition].classList.contains("snake") || this.cells[this.hawkPosition].classList.contains("snakeHead") ||this.cells[this.hawkPosition].classList.contains("snakeBody") ||
             this.cells[this.hawkPosition].classList.contains("snakeTail") || this.cells[this.hawkPosition].classList.contains("snakeTurnRight")  || this.cells[this.hawkPosition].classList.contains("snakeTurnLeft"))
             {
                 this.hitSnake = true;
+                console.log(this.hitSnake);
             }
 
             this.Place();
@@ -93,10 +95,10 @@ function init()
     /*-------------------------------- Constants --------------------------------*/
     // grid data
     const cells = [];
-    const gridWidth = 20;
-    const gridHeight = 10;
+    const gridWidth = 40;
+    const gridHeight = 20;
     //const gridScale = 62;
-    const cellSize = 50;
+    const cellSize = 30;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 800;
 
@@ -106,10 +108,10 @@ function init()
     /*-------------------------------- Variables --------------------------------*/
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
-    let snakeLength = 1;
+    let snakeLength = 2;
     let snakeDir = gridWidth;
 
-    let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
+    let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1, (Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1) + gridWidth];
 
     let snakeDirHistory = [snakeDir];
     snakePosition = snakeHistory[snakeHistory.length - 1];
@@ -120,7 +122,10 @@ function init()
     let myTimer;
     let score = 0;
 
-    let hawk01= new hawk(23, -1 , gridWidth, gridHeight, cells);
+    let hawks = [new hawk(5, gridWidth , gridWidth, gridHeight, cells), new hawk(710, gridWidth * -1 , gridWidth, gridHeight, cells),
+        new hawk(502, -1 , gridWidth, gridHeight, cells), new hawk(210, 1 , gridWidth, gridHeight, cells),
+        new hawk(151, 1 , gridWidth, gridHeight, cells), new hawk(579, gridWidth , gridWidth, gridHeight, cells),
+        new hawk(683, 1 , gridWidth, gridHeight, cells), new hawk(370, gridWidth * -1 , gridWidth, gridHeight, cells)]
 
     // this method will create a grid to act as the board
     function createGrid() 
@@ -135,7 +140,11 @@ function init()
             //cell.textContent = i;
             gridEl.appendChild(cell);
         }
-        hawk01.cells = cells;
+        
+        hawks.forEach(function(h)
+        {
+            h.cells = cells;
+        });
     }
 
     function placeSnake() 
@@ -328,14 +337,17 @@ function init()
             }
 
             tempPos += snakeDir;
-            hawk01.Move();
-            if(hawk01.hitSnake)
-            {
-                gameOver();
-            }
             checkSnake();
             checkBoundary();
             placeSnake();
+            hawks.forEach(function(h)
+            {
+                h.Move();
+                if(h.hitSnake == true)
+                {
+                    gameOver();
+                }
+            });
             updateInfo();
         }, snakeTimer);
 
@@ -351,9 +363,9 @@ function init()
         tempPos = snakePosition;
         difficultyEl.disabled = false;
 
-        if(score > localStorage.getItem("highScore"))
+        if(score > localStorage.getItem("highScoreLv4"))
         {
-            localStorage.setItem("highScore", score);
+            localStorage.setItem("highScoreLv4", score);
         }
     }
 
@@ -402,17 +414,30 @@ function init()
         snakeDir = gridWidth;
         gameEnd = false;
         gameStart = false;
-        snakeLength = 1;
-        snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1];
+        snakeLength = 2;
+        snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1, (Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1) + gridWidth];
         snakeDirHistory = [gridWidth];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
-        score = 0;
-        hawk01.hitSnake = false;
         for (let i = 0; i < numberOfCells; i++) 
         {
             cells[i].classList.remove("fruit");
+            cells[i].classList.remove("hawk");
         }
+        hawks = [new hawk(5, gridWidth , gridWidth, gridHeight, cells), new hawk(710, gridWidth * -1 , gridWidth, gridHeight, cells),
+        new hawk(502, -1 , gridWidth, gridHeight, cells), new hawk(210, 1 , gridWidth, gridHeight, cells),
+        new hawk(151, 1 , gridWidth, gridHeight, cells), new hawk(579, gridWidth , gridWidth, gridHeight, cells),
+        new hawk(683, 1 , gridWidth, gridHeight, cells), new hawk(370, gridWidth * -1 , gridWidth, gridHeight, cells)]
+        hawks.forEach(function(h)
+        {
+            h.Place();
+        });
+        score = 0;
+        hawks.forEach(function(h)
+        {
+            h.hitSnake = false;
+        });
+        
         difficultyEl.disabled = false;
         placeSnake();
         placeFruit();
@@ -457,13 +482,13 @@ function init()
             messageEl.textContent = "Press WASD to Start Playing";
         }
 
-        if(localStorage.getItem("highScore") !== null)
+        if(localStorage.getItem("highScoreLv4") !== null)
         {
-            highScoreEl.textContent = `High Score: ${localStorage.getItem("highScore")}`;
+            highScoreEl.textContent = `High Score: ${localStorage.getItem("highScoreLv4")}`;
         }
         else
         {
-            localStorage.setItem("highScore", 0);
+            localStorage.setItem("highScoreLv4", 0);
         }
     }
 
@@ -514,7 +539,10 @@ function init()
 
     // this section will call all the methods to run the game
     createGrid();
-    hawk01.Place();
+    hawks.forEach(function(h)
+    {
+        h.Place();
+    });
     placeSnake();
     placeFruit();
     updateInfo();
