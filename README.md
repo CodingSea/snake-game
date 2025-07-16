@@ -22,6 +22,22 @@ the idea of the snake game is to eat fruits and grow longer till the player reac
 * JavaScript ES6
 * Git
 
+### Grid Design
+
+I started with a grid of divs as this would allow me to accurately place the sprite and obstacles on the game board. I decided to use this method over using a canvas so that I could practice using 2D arrays.
+
+I made a grid spawner that will spawn the cells of the grid based on the width an height variables, and in some scripts there is an array that allows me to visualize and spawn some objects like rocks, keys, doors, and the player.
+
+![grid image](assets/grid.png)
+
+## Game Mechanics
+
+### Snake Movement
+The snake moves based on the numbers on the grid
+
+### Snake Sprite
+This is achieved by making each picture of the snake divided into a state(Head,Body,Tail, etc...), and by making the pictures into backgrounds of classes, these classes will be added to cells and in each interval before placing the classes the grid will remove all the snake classes.
+
 ## Getting Started
 
 ### Installation
@@ -36,7 +52,6 @@ the idea of the snake game is to eat fruits and grow longer till the player reac
 * More Levels
 * More Enemies
 * World-Wide Highscore
-
 
 ## Attributions
 * snake sprites url: [snake](https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5)
