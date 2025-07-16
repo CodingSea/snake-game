@@ -24,7 +24,7 @@ the idea of the snake game is to eat fruits and grow longer till the player reac
 
 ### Grid Design
 
-I started with a grid of divs as this would allow me to accurately place the sprite and obstacles on the game board. I decided to use this method over using a canvas so that I could practice using 2D arrays.
+I started with a grid of divs as this would allow me to accurately place the sprite and obstacles on the game board. I decided to use this method over using a canvas so that I could practice using arrays.
 
 I made a grid spawner that will spawn the cells of the grid based on the width an height variables, and in some scripts there is an array that allows me to visualize and spawn some objects like rocks, keys, doors, and the player.
 
