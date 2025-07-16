@@ -33,7 +33,7 @@ I made a grid spawner that will spawn the cells of the grid based on the width a
 ## Game Mechanics
 
 ### Snake Movement
-The snake moves based on the numbers on the grid, it will start by removing all the snake classes in the grid cells and then will place them in thier new position based on the snake movement history and length.
+The snake moves based on the numbers on the grid, it will start by removing all the snake classes in the grid cells and then will place them in thier new position based on the snake movement history and length. The snake moves using keybaord keys 'WASD' and the way it moves is by adding 1 or -1 for moving right and left and by adding grid width to move down and negative grid width in order to move up.
 
 ![snake movement](assets/readme/snakeMovement.png)
 
