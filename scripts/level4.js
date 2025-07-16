@@ -22,6 +22,12 @@ function init()
 
         Place()
         {
+            if(this.cells[this.hawkPosition].classList.contains("snake") || this.cells[this.hawkPosition].classList.contains("snakeHead") ||this.cells[this.hawkPosition].classList.contains("snakeBody") ||
+            this.cells[this.hawkPosition].classList.contains("snakeTail") || this.cells[this.hawkPosition].classList.contains("snakeTurnRight")  || this.cells[this.hawkPosition].classList.contains("snakeTurnLeft"))
+            {
+                this.hitSnake = true;
+            }
+
             if(this.hawkDir == gridWidth * -1)
             {
                 this.cells[this.hawkPosition].style.transform = "rotate(0deg)";
@@ -69,13 +75,6 @@ function init()
 
             this.hawkPosition = this.hTempPos;
 
-            if(this.cells[this.hawkPosition].classList.contains("snake") || this.cells[this.hawkPosition].classList.contains("snakeHead") ||this.cells[this.hawkPosition].classList.contains("snakeBody") ||
-            this.cells[this.hawkPosition].classList.contains("snakeTail") || this.cells[this.hawkPosition].classList.contains("snakeTurnRight")  || this.cells[this.hawkPosition].classList.contains("snakeTurnLeft"))
-            {
-                this.hitSnake = true;
-                console.log(this.hitSnake);
-            }
-
             this.Place();
         }
     }
@@ -109,11 +108,11 @@ function init()
     // these variables will be responsible for keeping track of the player position and info
     let snakePosition;
     let snakeLength = 2;
-    let snakeDir = gridWidth;
+    let snakeDir = gridWidth * -1;
 
-    let snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1, (Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1) + gridWidth];
+    let snakeHistory = [379, 339, 299];
 
-    let snakeDirHistory = [snakeDir];
+    let snakeDirHistory = [snakeDir, snakeDir];
     snakePosition = snakeHistory[snakeHistory.length - 1];
     let tempPos = snakePosition;
 
@@ -202,6 +201,7 @@ function init()
                 if(i !== snakeLength - 1)
                 {
                     // right turn
+                    
                     if(snakeDirHistory[snakeDirHistory.length - i] == 1 && snakeDirHistory[snakeDirHistory.length - i - 1] == (gridWidth * -1))
                     {
                         cells[snakePosIndex].classList.add("snakeTurnRight");
@@ -268,19 +268,18 @@ function init()
     {
         for (let i = 0; i < numberOfCells; i++) 
         {
+            if(cells[i].classList.contains("snake") || cells[i].classList.contains("snakeHead") || cells[i].classList.contains("snakeBody") ||
+            cells[i].classList.contains("snakeTail") || cells[i].classList.contains("snakeTurnRight")  || cells[i].classList.contains("snakeTurnLeft"))
+            {
+                cells[i].style.transform = "rotate(0deg)";
+            }
+
             cells[i].classList.remove("snake");
             cells[i].classList.remove("snakeHead");
             cells[i].classList.remove("snakeBody");
             cells[i].classList.remove("snakeTail");
             cells[i].classList.remove("snakeTurnRight");
             cells[i].classList.remove("snakeTurnLeft");
-            
-
-            if(cells[i].classList.contains("snake") || cells[i].classList.contains("snakeHead") ||cells[i].classList.contains("snakeBody") ||
-            cells[i].classList.contains("snakeTail") || cells[i].classList.contains("snakeTurnRight")  || cells[i].classList.contains("snakeTurnLeft"))
-            {
-                cells[i].style.transform = "rotate(0deg)";
-            }
         }
     }
 
@@ -411,12 +410,12 @@ function init()
             clearInterval(myTimer);
         }
 
-        snakeDir = gridWidth;
+        snakeDir = gridWidth * -1;
         gameEnd = false;
         gameStart = false;
         snakeLength = 2;
-        snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1, (Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1) + gridWidth];
-        snakeDirHistory = [gridWidth];
+        snakeHistory = [Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1, (Math.floor(numberOfCells / 2) - Math.floor((gridWidth / 2)) - 1) - gridWidth];
+        snakeDirHistory = [snakeDir];
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
         for (let i = 0; i < numberOfCells; i++) 
@@ -539,12 +538,12 @@ function init()
 
     // this section will call all the methods to run the game
     createGrid();
+    placeSnake();
+    placeFruit();
     hawks.forEach(function(h)
     {
         h.Place();
-    });
-    placeSnake();
-    placeFruit();
+    }); 
     updateInfo();
 
     // audios
