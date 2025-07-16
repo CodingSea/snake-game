@@ -17,7 +17,6 @@ function init()
     const cells = [];
     const gridWidth = 20;
     const gridHeight = 20;
-    //const gridScale = 62;
     const cellSize = 30;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 800;
@@ -77,7 +76,6 @@ function init()
             cells.push(cell);
             cell.style.width = `${cellSize}px`;
             cell.style.height = `${cellSize}px`;
-            //cell.textContent = i;
             if(map[i] == "0")
             {
                 cell.classList.add("rock");
@@ -348,7 +346,6 @@ function init()
         }
         difficultyEl.disabled = false;
         placeSnake();
-        //placeFruit();
         updateInfo();
     }
 
@@ -459,7 +456,6 @@ function init()
     // this section will call all the methods to run the game
     createGrid();
     placeSnake();
-    //placeFruit();
     updateInfo();
 
     // audios

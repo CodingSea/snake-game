@@ -18,7 +18,6 @@ function init()
     const cells = [];
     const gridWidth = 20;
     const gridHeight = 10;
-    //const gridScale = 62;
     const cellSize = 50;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 800;
@@ -53,7 +52,6 @@ function init()
             cells.push(cell);
             cell.style.width = `${cellSize}px`;
             cell.style.height = `${cellSize}px`;
-            //cell.textContent = i;
             gridEl.appendChild(cell);
         }
     }

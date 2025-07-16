@@ -1,5 +1,3 @@
-
-
 // the init method will be called after the page loads;
 function init() 
 {
@@ -96,7 +94,6 @@ function init()
     const cells = [];
     const gridWidth = 40;
     const gridHeight = 20;
-    //const gridScale = 62;
     const cellSize = 30;
     const numberOfCells = gridWidth * gridHeight;
     let snakeTimer = 800;
@@ -136,7 +133,6 @@ function init()
             cells.push(cell);
             cell.style.width = `${cellSize}px`;
             cell.style.height = `${cellSize}px`;
-            //cell.textContent = i;
             gridEl.appendChild(cell);
         }
         
