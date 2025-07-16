@@ -17,38 +17,61 @@ function init()
             this.gridWidth = gridWidth;
             this.gridHeight = gridHeight;
             this.cells = cells;
+            this.hitSnake = false;
         }
 
         Place()
         {
+            if(this.hawkDir == gridWidth * -1)
+            {
+                this.cells[this.hawkPosition].style.transform = "rotate(0deg)";
+            }
+            else if(this.hawkDir == gridWidth)
+            {
+                this.cells[this.hawkPosition].style.transform = "rotate(180deg)";
+            }
+            else if(this.hawkDir == 1)
+            {
+                this.cells[this.hawkPosition].style.transform = "rotate(90deg)";
+            }
+            else if(this.hawkDir == -1)
+            {
+                this.cells[this.hawkPosition].style.transform = "rotate(270deg)";
+            }
+
             this.cells[this.hawkPosition].classList.add("hawk");
-            console.log(this.hawkPosition);
         }
 
         Move()
         {
+            if(this.hitSnake) return;
             this.tempPos = this.hawkPosition + this.hawkDir;
-
             if (tempPos % gridWidth == 0 && snakeDir == 1) 
             {
-                this.hawkPosition += this.gridWidth;
+                this.tempPos += this.gridWidth;
             }
             else if ((tempPos % gridWidth) == (gridWidth - 1) && snakeDir == -1) 
             {
-                this.hawkPosition -= this.gridWidth;
+                this.tempPos -= this.gridWidth;
             }
-            else if(this.hawkPosition < 0)
+            else if(this.tempPos < 0)
             {
-                this.hawkPosition += (this.gridWidth * this.gridHeight);
+                this.tempPos += (this.gridWidth * this.gridHeight);
             }
-            else if(this.hawkPosition > (this.gridWidth * this.gridHeight))
+            else if(this.tempPos > (this.gridWidth * this.gridHeight))
             {
-                this.hawkPosition -= (this.gridWidth * this.gridHeight);
+                this.tempPos -= (this.gridWidth * this.gridHeight);
             }
-            else
+
+            this.cells[this.hawkPosition].classList.remove("hawk");
+            this.cells[this.hawkPosition].style.transform = "rotate(0deg)";
+            this.hawkPosition = this.tempPos;
+            //console.log(this.hawkPosition);
+
+            if(this.cells[this.hawkPosition].classList.contains("snake") || this.cells[this.hawkPosition].classList.contains("snakeHead") ||this.cells[this.hawkPosition].classList.contains("snakeBody") ||
+            this.cells[this.hawkPosition].classList.contains("snakeTail") || this.cells[this.hawkPosition].classList.contains("snakeTurnRight")  || this.cells[this.hawkPosition].classList.contains("snakeTurnLeft"))
             {
-                cells[this.hawkPosition].classList.remove("hawk");
-                this.hawkPosition = this.tempPos;
+                this.hitSnake = true;
             }
 
             this.Place();
@@ -97,7 +120,7 @@ function init()
     let myTimer;
     let score = 0;
 
-    let hawk01= new hawk(23, gridWidth, gridWidth, gridHeight, cells);
+    let hawk01= new hawk(23, -1 , gridWidth, gridHeight, cells);
 
     // this method will create a grid to act as the board
     function createGrid() 
@@ -242,7 +265,13 @@ function init()
             cells[i].classList.remove("snakeTail");
             cells[i].classList.remove("snakeTurnRight");
             cells[i].classList.remove("snakeTurnLeft");
-            cells[i].style.transform = "rotate(0deg)";
+            
+
+            if(cells[i].classList.contains("snake") || cells[i].classList.contains("snakeHead") ||cells[i].classList.contains("snakeBody") ||
+            cells[i].classList.contains("snakeTail") || cells[i].classList.contains("snakeTurnRight")  || cells[i].classList.contains("snakeTurnLeft"))
+            {
+                cells[i].style.transform = "rotate(0deg)";
+            }
         }
     }
 
@@ -300,6 +329,10 @@ function init()
 
             tempPos += snakeDir;
             hawk01.Move();
+            if(hawk01.hitSnake)
+            {
+                gameOver();
+            }
             checkSnake();
             checkBoundary();
             placeSnake();
@@ -375,6 +408,7 @@ function init()
         tempPos = snakeHistory[snakeHistory.length - 1];
         snakePosition = tempPos;
         score = 0;
+        hawk01.hitSnake = false;
         for (let i = 0; i < numberOfCells; i++) 
         {
             cells[i].classList.remove("fruit");

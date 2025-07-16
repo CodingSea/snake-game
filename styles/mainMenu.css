@@ -11,10 +11,10 @@ body
 .mainMenu
 {
     width: 600px;
-    margin: 5em auto;
+    margin: 3em auto;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 2em;
-    padding: 1em;
+    padding: 1em;   
 }
 
 .mainMenu::backdrop
