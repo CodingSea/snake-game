@@ -110,7 +110,7 @@ function init()
     let snakeLength = 2;
     let snakeDir = gridWidth * -1;
 
-    let snakeHistory = [379, 339, 299];
+    let snakeHistory = [379, 339];
 
     let snakeDirHistory = [snakeDir, snakeDir];
     snakePosition = snakeHistory[snakeHistory.length - 1];
