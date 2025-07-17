@@ -210,6 +210,15 @@ this.cells[this.hawkPosition].classList.contains("snakeTail") || this.cells[this
 }
 ```
 
+
+### Loss Logic
+
+In every interval the game checks if the snake is colliding with an object or a boundary, and if the snake hit the boundary, rock or a door it would lead to ending the game, the only choice left to the player would be to restart the level.
+
+### Win Logic
+
+There is two types of level, ones that are near infinate but has a highscore and the others use a crown that would show a popup menu that allows the player to go to the next level or return to the main menu.
+
 ## Getting Started
 
 ### Installation
