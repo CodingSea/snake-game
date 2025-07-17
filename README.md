@@ -10,6 +10,7 @@ This is a web-based implementation of the Snake game. Developed using HTML for s
 
 * [Introduction](#Introduction)
 * [Project Brief](#Project-Brief)
+* [How to Play](#How-to-Play)
 * [Technologies](#Technologies)
     * [Grid Design](#Grid-Design)
 * [Game Mechanics](#Game-Mechanics)
@@ -34,6 +35,15 @@ the idea of the snake game is to eat fruits and grow longer till the player reac
 * the game should have enemies.
 * Deploy the game online for the world to enjoy.
 
+## How to Play
+
+* Press "WASD" keys to move.
+* Don't collide with the boundary, rocks or the hawks.
+* Eat fruit to get either a highscore or to spawn the crown.
+* Eat the crown to go to the next level.
+
+
+  
 
 ## Technologies
 
