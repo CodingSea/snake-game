@@ -53,7 +53,7 @@ function init()
     let gameStart = false;
     let gameEnd = false;
     let myTimer;
-    const targetLength = 10;
+    const targetLength = 1;
     let win = false;
 
     // this method will create a grid to act as the board

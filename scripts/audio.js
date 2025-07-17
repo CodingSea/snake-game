@@ -6,11 +6,6 @@ function init()
     rockSFXEl = document.querySelector("#rockSFXEl");
     rockSFXEl.load();
     rockSFXEl.currentTime = 0;
-
-    bgMusicEl = document.querySelector("#bgMusic");
-    bgMusicEl.load();
-    bgMusicEl.currentTime = 0;
-    bgMusicEl.play();
 }
 
 function rockSound()
@@ -19,7 +14,6 @@ function rockSound()
     rockSFXEl.currentTime = 0;
 
     rockSFXEl.play();
-    bgMusicEl.play();
 }
 
 document.addEventListener('DOMContentLoaded', init);
