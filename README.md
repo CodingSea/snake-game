@@ -9,7 +9,7 @@ This is a web-based implementation of the Snake game. Developed using HTML for s
 ## Contents
 
 * [Introduction](#Introduction)
-* [Project Brief](#Project Brief)
+* [Project Brief](#Project-Brief)
 * [Technologies](#Technologies)
     * [Grid Design](#Grid-Design)
 * [Game Mechanics](#Game-Mechanics)
