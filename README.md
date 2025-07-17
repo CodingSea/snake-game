@@ -330,7 +330,7 @@ There is two types of level, ones that are near infinate but has a highscore and
 
 ### Installation
 
-1. Clone the repo\
+1. Clone the repo
 ```
 git clone https://github.com/CodingSea/snake-game.git
 ```
