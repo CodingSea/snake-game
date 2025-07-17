@@ -2,7 +2,27 @@
 
 ![snake game logo](assets/logo.png)
 
+## Introduction
+
 This is a web-based implementation of the Snake game. Developed using HTML for structure, CSS for visual presentation, and JavaScript for game logic, it functions by allowing a player to control a snake that moves across a grid. The objective is to guide the snake to consume fruits, which causes the snake to grow longer. The game ends if the snake collides with its own body, rocks or the boundaries of the game area.
+
+## Contents
+
+* [Introduction](#Introduction)
+* [Project Brief](#Project Brief)
+* [Technologies](#Technologies)
+    * [Grid Design](#Grid-Design)
+* [Game Mechanics](#Game-Mechanics)
+    * [Snake Movement](#Snake-Movement)
+    * [Snake Sprite](#Snake-Sprite)
+    * [Detecting Collisions](#Detecting-Collisions)
+    * [Loss Logic](#Loss-Logic)
+    * [Win Logic](#Win-Logic)
+* [Wins and Blockers](#Wins-andBlockers)
+* [Getting Started](#Getting-Started)
+* [Additional features](#Additional-features)
+* [Attributions](#Attributions)
+* [In Conclusion](#In-Conclusion)
 
 ## Project Brief
 
