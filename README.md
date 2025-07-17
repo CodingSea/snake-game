@@ -219,6 +219,83 @@ In every interval the game checks if the snake is colliding with an object or a 
 
 There is two types of level, ones that are near infinate but has a highscore and the others use a crown that would show a popup menu that allows the player to go to the next level or return to the main menu.
 
+## Wins and Blockers
+
+**Wins include:**
+* Array map for objects
+      I had a problem with placing all the rocks for the maze levels, so i created a map array that I match the current grid size to the array size and place a character in it to visualize where each objects must be, then I loop through the map and add the class of the objects to thier corresponding position.
+
+```js
+    const map =
+    [
+        '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+        '0', 'S', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0',
+        '0', 'F', '0', ' ', '0', '0', '0', ' ', '0', ' ', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+        '0', 'F', ' ', ' ', '0', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0',
+        '0', 'F', '0', '0', '0', ' ', '0', '0', '0', '0', '0', '0', '0', '0', '0', ' ', '0', ' ', '0',
+        '0', 'F', '0', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', '0', ' ', '0',
+        '0', 'F', '0', '0', '0', '0', '0', ' ', '0', '0', '0', '0', '0', ' ', '0', '0', '0', ' ', '0',
+        '0', 'F', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', '0', ' ', ' ', ' ', '0',
+        '0', '0', '0', ' ', '0', ' ', '0', '0', '0', '0', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0',
+        '0', ' ', ' ', ' ', '0', ' ', '0', ' ', ' ', 'K', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0',
+        '0', '0', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0',
+        '0', ' ', ' ', ' ', '0', ' ', ' ', ' ', '0', ' ', '0', ' ', '0', ' ', ' ', ' ', '0', ' ', '0',
+        '0', ' ', '0', '0', '0', '0', '0', '0', '0', ' ', '0', ' ', '0', '0', '0', '0', '0', '0', '0',
+        '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', '0', ' ', ' ', ' ', ' ', ' ', 'D', ' ', '0',
+        '0', '0', '0', '0', '0', ' ', '0', ' ', '0', ' ', '0', ' ', '0', '0', '0', '0', '0', ' ', '0',
+        '0', ' ', ' ', ' ', '0', ' ', '0', ' ', '0', ' ', ' ', ' ', '0', ' ', ' ', ' ', '0', ' ', '0',
+        '0', ' ', '0', '0', '0', ' ', '0', ' ', '0', '0', '0', '0', '0', ' ', '0', ' ', '0', ' ', '0',
+        '0', ' ', ' ', ' ', ' ', ' ', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', ' ', '0', 'C', '0',
+        '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+    ];
+
+
+    function createGrid() 
+    {
+        for (let i = 0; i < numberOfCells; i++) 
+        {
+            const cell = document.createElement("div");
+            cell.id = i;
+            cells.push(cell);
+            cell.style.width = `${cellSize}px`;
+            cell.style.height = `${cellSize}px`;
+            if(map[i] == "0")
+            {
+                cell.classList.add("rock");
+            }
+            else if(map[i] == "C")
+            {
+                cell.classList.add("crown");
+            }
+            else if(map[i] == "F")
+            {
+                cell.classList.add("fruit");
+            }
+            else if(map[i] == "S")
+            {
+                snakePosition = i;
+                snakeHistory.push(snakePosition);
+                tempPos = snakePosition;
+            }
+            else if(map[i] == "K")
+            {
+                cell.classList.add("key");
+                key.keyPosition = i;
+            }
+            else if(map[i] == "D")
+            {
+                cell.classList.add("door");
+                key.doorPosition = i;
+            }
+            gridEl.appendChild(cell);
+        }
+    }
+```
+
+**Blockers include:**
+* the code was very messy and not reusable where each level needed it's own script, in the beginning i was not able to think of a way to make the original script resusable for the other levels.
+* cannot make more levels easily.
+
 ## Getting Started
 
 ### Installation
@@ -235,6 +312,7 @@ git clone https://github.com/CodingSea/snake-game.git
 * More Levels
 * More Enemies
 * World-Wide Highscore
+* I will rewrite the project to use classes and inheritance.
 
 ## Attributions
 * snake sprites url: [snake](https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5)
